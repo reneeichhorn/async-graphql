@@ -7,7 +7,7 @@ use crate::{
     TypeName, Value,
 };
 
-pub(crate) struct CursorScalar<T: CursorType>(pub(crate) T);
+pub struct CursorScalar<T: CursorType>(pub T);
 
 #[Scalar(internal, name = "String")]
 impl<T: CursorType + Send + Sync> ScalarType for CursorScalar<T> {
@@ -42,7 +42,7 @@ where
     #[graphql(skip)]
     _mark: PhantomData<Name>,
     /// A cursor for use in pagination
-    pub(crate) cursor: CursorScalar<Cursor>,
+    pub cursor: CursorScalar<Cursor>,
     /// The item at the end of the edge
     pub node: Node,
     #[graphql(flatten)]
